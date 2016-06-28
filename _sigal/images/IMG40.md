@@ -1,2 +1,4 @@
-bra: 11530
-underwear: 51530
+item: Бюстгальтер 11530
+item: Трусики 51530
+price: 130
+price: 70

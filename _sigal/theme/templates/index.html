@@ -63,16 +63,19 @@
 		{% if album.medias %}
 			<div class="gallery" itemscope itemtype="http://schema.org/ImageGallery">
 				{% for media in album.medias %}
-				  {% set media_title = ("Бюстгальтер " ~ media.meta.bra[0] if media.meta.bra) ~
-									   (" " if media.meta.bra and media.meta.underwear) ~
-									   ("Трусики " ~ media.meta.underwear[0] if media.meta.underwear)
-				  %}
+				  {% set media_title = media.meta.item|join(' ') if media.meta.item %}
 					    {% if media.type == "image" %}
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
 								<a href="{{ media.filename }}" itemprop="contentUrl" data-size="{{media.size.width}}x{{media.size.height}}">
 								<img src="{{ theme.url }}/echo/blank.gif" data-echo="{{ media.thumbnail }}" alt="{{ media.filename }}" itemprop="thumbnail" title="{{ media_title }}" />
 								</a>
-								<figcaption itemprop="caption description">{{ media_title }}</figcaption>
+								<figcaption itemprop="caption description">
+								{% for item in media.meta.item %}
+								<div>{{ item }} <span style="float:right;">{{media.meta.price[loop.index0]~" грн." if media.meta.price and media.meta.price|length > loop.index0}}</span></div>
+								{% else %}
+								{{ media_title }}
+								{% endfor %}
+								</figcaption>
 							</figure>
 					    {% endif %}
 				{% endfor %}

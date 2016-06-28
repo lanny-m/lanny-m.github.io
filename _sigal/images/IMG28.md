@@ -1,1 +1,2 @@
-underwear: 5119
+item: Трусики 5119
+price: 70

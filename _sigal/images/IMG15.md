@@ -1,2 +1,4 @@
-bra: 11118
-underwear: 51118
+item: Бюстгальтер 11118
+item: Трусики 51118
+price: 130
+price: 70

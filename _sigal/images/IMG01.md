@@ -1,2 +1,4 @@
-Bra: 11957
-Underwear: 51957
+item: Бюстгальтер 11957
+item: Трусики 51957
+price: 135
+price: 70

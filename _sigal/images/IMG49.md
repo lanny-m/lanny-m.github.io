@@ -1,1 +1,4 @@
-underwear: 2061, 5116
+item: Трусики 2061
+item: Трусики 5116
+price: 50
+price: 40
