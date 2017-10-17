@@ -13,6 +13,24 @@
     <script src="{{ theme.url }}/photoswipe.min.js"></script>
     <script src="{{ theme.url }}/photoswipe-ui-default.min.js"></script>
     <script src="{{ theme.url }}/echo/echo.min.js"></script>
+
+
+
+
+	  <!--Include the SimpleCart(js) script-->
+	  <script src="{{ theme.url }}/simpleCart/simpleCart.js" type="text/javascript" charset="utf-8"></script>
+	  <script src="{{ theme.url }}/simpleCart/jquery.1.6.1.min.js" type="text/javascript" charset="utf-8"></script>
+	  <script>
+		  simpleCart({
+			  checkout: {
+				  type: "PayPal" ,
+				  email: "you@yours.com"
+			  },
+			  cartStyle: "table"
+		  });
+	  </script>
+
+
     {% endblock %}
   </head>
   <body>
@@ -28,6 +46,22 @@
       </ul>
     </div>
     {% endif %}
+
+
+
+	  <a href="javascript:;" onclick="simpleCart.add({name:'baby lion', price: 34.95,size:'tiny',thumb:'thumbnails/IMG01.jpg',color:'Blue'});" >add to cart</a>
+
+	  <div id="left">
+		  <!--Add a Div with the class "simpleCart_items" to show your shopping cart area.-->
+		  <div class="simpleCart_items" >
+		  </div>
+
+		  <div class="checkoutEmptyLinks">
+			  <!--Here's the Links to Checkout and Empty Cart-->
+			  <a href="#" class="simpleCart_empty">empty cart</a>
+			  <a href="#" class="simpleCart_checkout">Checkout</a>
+		  </div>
+	  </div>
 
 	{% block content %}
 
@@ -71,7 +105,9 @@
 								</a>
 								<figcaption itemprop="caption description">
 								{% for item in media.meta.item %}
-								<div>{{ item }} <span style="float:right;">{{media.meta.price[loop.index0]~" грн." if media.meta.price and media.meta.price|length > loop.index0}}</span></div>
+								<div>{{ item }} <span style="float:right;">{{ media.meta.price[loop.index0]~" грн." if media.meta.price and media.meta.price|length > loop.index0 }}
+								<a href="javascript:;" onclick="simpleCart.add({name:'{{ item }}', price: '{{media.meta.price[loop.index0] if media.meta.price and media.meta.price|length > loop.index0}}', size:'tiny',thumb:'{{ media.thumbnail }}',color:'Blue'});" >add to cart</a>
+								</span></div>
 								{% else %}
 								{{ media_title }}
 								{% endfor %}

@@ -12,11 +12,70 @@
     <script src="static/photoswipe.min.js"></script>
     <script src="static/photoswipe-ui-default.min.js"></script>
     <script src="static/echo/echo.min.js"></script>
+
+
+
+
+
+
+
+
+
+	  <!--Include the SimpleCart(js) script-->
+	  <script src="static/simpleCart/simpleCart.js" type="text/javascript" charset="utf-8"></script>
+	  <script src="static/simpleCart/jquery.1.6.1.min.js" type="text/javascript" charset="utf-8"></script>
+	  <script>
+		  simpleCart({
+			  checkout: {
+				  type: "SendForm" ,
+				  url: "http://example.com/your/custom/checkout/url" ,
+
+				  // http method for form, "POST" or "GET", default is "POST"
+				  method: "GET" ,
+
+
+				  // an option list of extra name/value pairs that can
+				  // be sent along with the checkout data
+				  extra_data: {
+					  storename: "fake"
+				  }
+			  } ,
+			  cartColumns			: [
+				  { attr: "thumb", label: "Thumb", view: 'image' },
+				  { attr: "name", label: "Name" },
+				  { attr: "price", label: "Price", view: 'currency' },
+				  { view: "decrement", label: false },
+				  { attr: "quantity", label: "Qty" },
+				  { view: "increment", label: false },
+				  { attr: "total", label: "SubTotal", view: 'currency' },
+				  { view: "remove", text: "Remove", label: false }
+			  ],
+			  cartStyle: "table"
+		  });
+	  </script>
+
+
   </head>
   <body>
   <div class="container">
 	<h1><a href="./">Lanny mode оптом в Украине</a></h1>
 
+
+
+
+	  <a href="javascript:;" onclick="simpleCart.add({name:'baby lion', price: 34.95,size:'tiny',thumb:'thumbnails/IMG01.jpg',color:'Blue'});" >add to cart</a>
+
+	  <div id="left">
+		  <!--Add a Div with the class "simpleCart_items" to show your shopping cart area.-->
+		  <div class="simpleCart_items" >
+		  </div>
+
+		  <div class="checkoutEmptyLinks">
+			  <!--Here's the Links to Checkout and Empty Cart-->
+			  <a href="#" class="simpleCart_empty">empty cart</a>
+			  <a href="#" class="simpleCart_checkout">Checkout</a>
+		  </div>
+	  </div>
 
 
         <div class="content">
@@ -29,8 +88,12 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG01.jpg" alt="IMG01.jpg" itemprop="thumbnail" title="Бюстгальтер 11957 Трусики 51957" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11957 <span style="float:right;">135 грн.</span></div>
-								<div>Трусики 51957 <span style="float:right;">70 грн.</span></div>
+								<div>Бюстгальтер 11957 <span style="float:right;">135 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11957', price: '135', size:'tiny',thumb:'thumbnails/IMG01.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
+								<div>Трусики 51957 <span style="float:right;">70 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Трусики 51957', price: '70', size:'tiny',thumb:'thumbnails/IMG01.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -38,7 +101,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG02.jpg" alt="IMG02.jpg" itemprop="thumbnail" title="Бюстгальтер 12016" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 12016 <span style="float:right;">130 грн.</span></div>
+								<div>Бюстгальтер 12016 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 12016', price: '130', size:'tiny',thumb:'thumbnails/IMG02.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -46,8 +111,12 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG03.jpg" alt="IMG03.jpg" itemprop="thumbnail" title="Бюстгальтер 11128 Трусики 51128" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11128 <span style="float:right;">130 грн.</span></div>
-								<div>Трусики 51128 <span style="float:right;">70 грн.</span></div>
+								<div>Бюстгальтер 11128 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11128', price: '130', size:'tiny',thumb:'thumbnails/IMG03.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
+								<div>Трусики 51128 <span style="float:right;">70 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Трусики 51128', price: '70', size:'tiny',thumb:'thumbnails/IMG03.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -55,8 +124,12 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG04.jpg" alt="IMG04.jpg" itemprop="thumbnail" title="Бюстгальтер 62004 Трусики 55004" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 62004 <span style="float:right;">105 грн.</span></div>
-								<div>Трусики 55004 <span style="float:right;">70 грн.</span></div>
+								<div>Бюстгальтер 62004 <span style="float:right;">105 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 62004', price: '105', size:'tiny',thumb:'thumbnails/IMG04.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
+								<div>Трусики 55004 <span style="float:right;">70 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Трусики 55004', price: '70', size:'tiny',thumb:'thumbnails/IMG04.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -64,7 +137,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG05.jpg" alt="IMG05.jpg" itemprop="thumbnail" title="Бюстгальтер 11958" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11958 <span style="float:right;">130 грн.</span></div>
+								<div>Бюстгальтер 11958 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11958', price: '130', size:'tiny',thumb:'thumbnails/IMG05.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -72,7 +147,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG06.jpg" alt="IMG06.jpg" itemprop="thumbnail" title="Бюстгальтер 11568" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11568 <span style="float:right;">130 грн.</span></div>
+								<div>Бюстгальтер 11568 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11568', price: '130', size:'tiny',thumb:'thumbnails/IMG06.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -80,7 +157,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG07.jpg" alt="IMG07.jpg" itemprop="thumbnail" title="Бюстгальтер 11229" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11229 <span style="float:right;">135 грн.</span></div>
+								<div>Бюстгальтер 11229 <span style="float:right;">135 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11229', price: '135', size:'tiny',thumb:'thumbnails/IMG07.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -88,7 +167,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG08.jpg" alt="IMG08.jpg" itemprop="thumbnail" title="Бюстгальтер 11438" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11438 <span style="float:right;">95 грн.</span></div>
+								<div>Бюстгальтер 11438 <span style="float:right;">95 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11438', price: '95', size:'tiny',thumb:'thumbnails/IMG08.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -96,7 +177,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG09.jpg" alt="IMG09.jpg" itemprop="thumbnail" title="Бюстгальтер 11245" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11245 <span style="float:right;">130 грн.</span></div>
+								<div>Бюстгальтер 11245 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11245', price: '130', size:'tiny',thumb:'thumbnails/IMG09.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -104,7 +187,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG10.jpg" alt="IMG10.jpg" itemprop="thumbnail" title="Бюстгальтер 11420" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11420 <span style="float:right;">130 грн.</span></div>
+								<div>Бюстгальтер 11420 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11420', price: '130', size:'tiny',thumb:'thumbnails/IMG10.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -112,8 +197,12 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG11.jpg" alt="IMG11.jpg" itemprop="thumbnail" title="Бюстгальтер 11558 Трусики 51558" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11558 <span style="float:right;">130 грн.</span></div>
-								<div>Трусики 51558 <span style="float:right;">70 грн.</span></div>
+								<div>Бюстгальтер 11558 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11558', price: '130', size:'tiny',thumb:'thumbnails/IMG11.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
+								<div>Трусики 51558 <span style="float:right;">70 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Трусики 51558', price: '70', size:'tiny',thumb:'thumbnails/IMG11.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -121,8 +210,12 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG12.jpg" alt="IMG12.jpg" itemprop="thumbnail" title="Бюстгальтер 11268 Трусики 51268" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11268 <span style="float:right;">115 грн.</span></div>
-								<div>Трусики 51268 <span style="float:right;">70 грн.</span></div>
+								<div>Бюстгальтер 11268 <span style="float:right;">115 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11268', price: '115', size:'tiny',thumb:'thumbnails/IMG12.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
+								<div>Трусики 51268 <span style="float:right;">70 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Трусики 51268', price: '70', size:'tiny',thumb:'thumbnails/IMG12.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -130,8 +223,12 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG13.jpg" alt="IMG13.jpg" itemprop="thumbnail" title="Бюстгальтер 11678 Трусики 51678" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11678 <span style="float:right;">130 грн.</span></div>
-								<div>Трусики 51678 <span style="float:right;">70 грн.</span></div>
+								<div>Бюстгальтер 11678 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11678', price: '130', size:'tiny',thumb:'thumbnails/IMG13.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
+								<div>Трусики 51678 <span style="float:right;">70 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Трусики 51678', price: '70', size:'tiny',thumb:'thumbnails/IMG13.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -139,7 +236,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG14.jpg" alt="IMG14.jpg" itemprop="thumbnail" title="Бюстгальтер 11171" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11171 <span style="float:right;">130 грн.</span></div>
+								<div>Бюстгальтер 11171 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11171', price: '130', size:'tiny',thumb:'thumbnails/IMG14.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -147,8 +246,12 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG15.jpg" alt="IMG15.jpg" itemprop="thumbnail" title="Бюстгальтер 11118 Трусики 51118" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11118 <span style="float:right;">130 грн.</span></div>
-								<div>Трусики 51118 <span style="float:right;">70 грн.</span></div>
+								<div>Бюстгальтер 11118 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11118', price: '130', size:'tiny',thumb:'thumbnails/IMG15.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
+								<div>Трусики 51118 <span style="float:right;">70 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Трусики 51118', price: '70', size:'tiny',thumb:'thumbnails/IMG15.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -156,7 +259,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG16.jpg" alt="IMG16.jpg" itemprop="thumbnail" title="Бюстгальтер 11053" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11053 <span style="float:right;">130 грн.</span></div>
+								<div>Бюстгальтер 11053 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11053', price: '130', size:'tiny',thumb:'thumbnails/IMG16.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -164,7 +269,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG17.jpg" alt="IMG17.jpg" itemprop="thumbnail" title="Бюстгальтер 9114" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 9114 <span style="float:right;">130 грн.</span></div>
+								<div>Бюстгальтер 9114 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 9114', price: '130', size:'tiny',thumb:'thumbnails/IMG17.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -172,7 +279,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG18.jpg" alt="IMG18.jpg" itemprop="thumbnail" title="Бюстгальтер 11022" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11022 <span style="float:right;">130 грн.</span></div>
+								<div>Бюстгальтер 11022 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11022', price: '130', size:'tiny',thumb:'thumbnails/IMG18.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -180,7 +289,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG19.jpg" alt="IMG19.jpg" itemprop="thumbnail" title="Бюстгальтер 11618" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11618 <span style="float:right;">130 грн.</span></div>
+								<div>Бюстгальтер 11618 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11618', price: '130', size:'tiny',thumb:'thumbnails/IMG19.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -188,8 +299,12 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG20.jpg" alt="IMG20.jpg" itemprop="thumbnail" title="Бюстгальтер 11578 Трусики 51578" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11578 <span style="float:right;">130 грн.</span></div>
-								<div>Трусики 51578 <span style="float:right;">70 грн.</span></div>
+								<div>Бюстгальтер 11578 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11578', price: '130', size:'tiny',thumb:'thumbnails/IMG20.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
+								<div>Трусики 51578 <span style="float:right;">70 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Трусики 51578', price: '70', size:'tiny',thumb:'thumbnails/IMG20.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -197,8 +312,12 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG21.jpg" alt="IMG21.jpg" itemprop="thumbnail" title="Бюстгальтер 2004 Трусики 55004" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 2004 <span style="float:right;">115 грн.</span></div>
-								<div>Трусики 55004 <span style="float:right;">70 грн.</span></div>
+								<div>Бюстгальтер 2004 <span style="float:right;">115 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 2004', price: '115', size:'tiny',thumb:'thumbnails/IMG21.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
+								<div>Трусики 55004 <span style="float:right;">70 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Трусики 55004', price: '70', size:'tiny',thumb:'thumbnails/IMG21.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -206,7 +325,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG22.jpg" alt="IMG22.jpg" itemprop="thumbnail" title="Бюстгальтер 12314" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 12314 <span style="float:right;">130 грн.</span></div>
+								<div>Бюстгальтер 12314 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 12314', price: '130', size:'tiny',thumb:'thumbnails/IMG22.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -214,7 +335,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG23.jpg" alt="IMG23.jpg" itemprop="thumbnail" title="Бюстгальтер 9886" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 9886 <span style="float:right;">130 грн.</span></div>
+								<div>Бюстгальтер 9886 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 9886', price: '130', size:'tiny',thumb:'thumbnails/IMG23.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -222,7 +345,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG24.jpg" alt="IMG24.jpg" itemprop="thumbnail" title="Бюстгальтер 11088" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11088 <span style="float:right;">130 грн.</span></div>
+								<div>Бюстгальтер 11088 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11088', price: '130', size:'tiny',thumb:'thumbnails/IMG24.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -230,7 +355,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG25.jpg" alt="IMG25.jpg" itemprop="thumbnail" title="Бюстгальтер 11629" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11629 <span style="float:right;">130 грн.</span></div>
+								<div>Бюстгальтер 11629 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11629', price: '130', size:'tiny',thumb:'thumbnails/IMG25.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -238,7 +365,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG26.jpg" alt="IMG26.jpg" itemprop="thumbnail" title="Бюстгальтер 11003" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11003 <span style="float:right;">130 грн.</span></div>
+								<div>Бюстгальтер 11003 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11003', price: '130', size:'tiny',thumb:'thumbnails/IMG26.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -246,7 +375,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG27.jpg" alt="IMG27.jpg" itemprop="thumbnail" title="Бюстгальтер 11818" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11818 <span style="float:right;">130 грн.</span></div>
+								<div>Бюстгальтер 11818 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11818', price: '130', size:'tiny',thumb:'thumbnails/IMG27.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -254,7 +385,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG28.jpg" alt="IMG28.jpg" itemprop="thumbnail" title="Трусики 5119" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Трусики 5119 <span style="float:right;">70 грн.</span></div>
+								<div>Трусики 5119 <span style="float:right;">70 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Трусики 5119', price: '70', size:'tiny',thumb:'thumbnails/IMG28.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -262,7 +395,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG29.jpg" alt="IMG29.jpg" itemprop="thumbnail" title="Бюстгальтер 11568" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11568 <span style="float:right;">130 грн.</span></div>
+								<div>Бюстгальтер 11568 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11568', price: '130', size:'tiny',thumb:'thumbnails/IMG29.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -270,7 +405,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG30.jpg" alt="IMG30.jpg" itemprop="thumbnail" title="Бюстгальтер 11438" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11438 <span style="float:right;">95 грн.</span></div>
+								<div>Бюстгальтер 11438 <span style="float:right;">95 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11438', price: '95', size:'tiny',thumb:'thumbnails/IMG30.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -278,7 +415,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG31.jpg" alt="IMG31.jpg" itemprop="thumbnail" title="Бюстгальтер 11420" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11420 <span style="float:right;">130 грн.</span></div>
+								<div>Бюстгальтер 11420 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11420', price: '130', size:'tiny',thumb:'thumbnails/IMG31.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -286,8 +425,12 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG32.jpg" alt="IMG32.jpg" itemprop="thumbnail" title="Бюстгальтер 11268 Трусики 51268" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11268 <span style="float:right;">115 грн.</span></div>
-								<div>Трусики 51268 <span style="float:right;">70 грн.</span></div>
+								<div>Бюстгальтер 11268 <span style="float:right;">115 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11268', price: '115', size:'tiny',thumb:'thumbnails/IMG32.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
+								<div>Трусики 51268 <span style="float:right;">70 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Трусики 51268', price: '70', size:'tiny',thumb:'thumbnails/IMG32.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -295,7 +438,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG33.jpg" alt="IMG33.jpg" itemprop="thumbnail" title="Бюстгальтер 11288" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11288 <span style="float:right;">130 грн.</span></div>
+								<div>Бюстгальтер 11288 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11288', price: '130', size:'tiny',thumb:'thumbnails/IMG33.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -303,8 +448,12 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG34.jpg" alt="IMG34.jpg" itemprop="thumbnail" title="Бюстгальтер 11669 Трусики 51669" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11669 <span style="float:right;">130 грн.</span></div>
-								<div>Трусики 51669 <span style="float:right;">70 грн.</span></div>
+								<div>Бюстгальтер 11669 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11669', price: '130', size:'tiny',thumb:'thumbnails/IMG34.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
+								<div>Трусики 51669 <span style="float:right;">70 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Трусики 51669', price: '70', size:'tiny',thumb:'thumbnails/IMG34.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -312,8 +461,12 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG35.jpg" alt="IMG35.jpg" itemprop="thumbnail" title="Бюстгальтер 11778 Трусики 51530" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11778 <span style="float:right;">130 грн.</span></div>
-								<div>Трусики 51530 <span style="float:right;">70 грн.</span></div>
+								<div>Бюстгальтер 11778 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11778', price: '130', size:'tiny',thumb:'thumbnails/IMG35.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
+								<div>Трусики 51530 <span style="float:right;">70 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Трусики 51530', price: '70', size:'tiny',thumb:'thumbnails/IMG35.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -321,7 +474,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG36.jpg" alt="IMG36.jpg" itemprop="thumbnail" title="Бюстгальтер 9113" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 9113 <span style="float:right;">100 грн.</span></div>
+								<div>Бюстгальтер 9113 <span style="float:right;">100 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 9113', price: '100', size:'tiny',thumb:'thumbnails/IMG36.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -329,7 +484,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG37.jpg" alt="IMG37.jpg" itemprop="thumbnail" title="Бюстгальтер 10930" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 10930 <span style="float:right;">130 грн.</span></div>
+								<div>Бюстгальтер 10930 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 10930', price: '130', size:'tiny',thumb:'thumbnails/IMG37.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -337,7 +494,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG38.jpg" alt="IMG38.jpg" itemprop="thumbnail" title="Бюстгальтер 11202" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11202 <span style="float:right;">130 грн.</span></div>
+								<div>Бюстгальтер 11202 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11202', price: '130', size:'tiny',thumb:'thumbnails/IMG38.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -345,7 +504,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG39.jpg" alt="IMG39.jpg" itemprop="thumbnail" title="Бюстгальтер 11804" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11804 <span style="float:right;">130 грн.</span></div>
+								<div>Бюстгальтер 11804 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11804', price: '130', size:'tiny',thumb:'thumbnails/IMG39.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -353,8 +514,12 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG40.jpg" alt="IMG40.jpg" itemprop="thumbnail" title="Бюстгальтер 11530 Трусики 51530" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11530 <span style="float:right;">130 грн.</span></div>
-								<div>Трусики 51530 <span style="float:right;">70 грн.</span></div>
+								<div>Бюстгальтер 11530 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11530', price: '130', size:'tiny',thumb:'thumbnails/IMG40.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
+								<div>Трусики 51530 <span style="float:right;">70 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Трусики 51530', price: '70', size:'tiny',thumb:'thumbnails/IMG40.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -362,8 +527,12 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG41.jpg" alt="IMG41.jpg" itemprop="thumbnail" title="Бюстгальтер 11668 Трусики 51669" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11668 <span style="float:right;">130 грн.</span></div>
-								<div>Трусики 51669 <span style="float:right;">70 грн.</span></div>
+								<div>Бюстгальтер 11668 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11668', price: '130', size:'tiny',thumb:'thumbnails/IMG41.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
+								<div>Трусики 51669 <span style="float:right;">70 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Трусики 51669', price: '70', size:'tiny',thumb:'thumbnails/IMG41.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -371,7 +540,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG42.jpg" alt="IMG42.jpg" itemprop="thumbnail" title="Бюстгальтер 11247" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11247 <span style="float:right;">130 грн.</span></div>
+								<div>Бюстгальтер 11247 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11247', price: '130', size:'tiny',thumb:'thumbnails/IMG42.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -379,7 +550,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG43.jpg" alt="IMG43.jpg" itemprop="thumbnail" title="Бюстгальтер 11204" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11204 <span style="float:right;">130 грн.</span></div>
+								<div>Бюстгальтер 11204 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11204', price: '130', size:'tiny',thumb:'thumbnails/IMG43.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -387,7 +560,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG44.jpg" alt="IMG44.jpg" itemprop="thumbnail" title="Бюстгальтер 10940" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 10940 <span style="float:right;">130 грн.</span></div>
+								<div>Бюстгальтер 10940 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 10940', price: '130', size:'tiny',thumb:'thumbnails/IMG44.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -395,7 +570,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG45.jpg" alt="IMG45.jpg" itemprop="thumbnail" title="Бюстгальтер 8706" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 8706 <span style="float:right;">130 грн.</span></div>
+								<div>Бюстгальтер 8706 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 8706', price: '130', size:'tiny',thumb:'thumbnails/IMG45.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -403,8 +580,12 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG46.jpg" alt="IMG46.jpg" itemprop="thumbnail" title="Бюстгальтер 82272 Трусики 5116" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 82272 <span style="float:right;">130 грн.</span></div>
-								<div>Трусики 5116 <span style="float:right;">50 грн.</span></div>
+								<div>Бюстгальтер 82272 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 82272', price: '130', size:'tiny',thumb:'thumbnails/IMG46.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
+								<div>Трусики 5116 <span style="float:right;">50 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Трусики 5116', price: '50', size:'tiny',thumb:'thumbnails/IMG46.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -412,8 +593,12 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG47.jpg" alt="IMG47.jpg" itemprop="thumbnail" title="Бюстгальтер 99580 Трусики 2061" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 99580 <span style="float:right;">130 грн.</span></div>
-								<div>Трусики 2061 <span style="float:right;">40 грн.</span></div>
+								<div>Бюстгальтер 99580 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 99580', price: '130', size:'tiny',thumb:'thumbnails/IMG47.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
+								<div>Трусики 2061 <span style="float:right;">40 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Трусики 2061', price: '40', size:'tiny',thumb:'thumbnails/IMG47.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -421,7 +606,9 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG48.jpg" alt="IMG48.jpg" itemprop="thumbnail" title="Бюстгальтер 11816, 11817, 8861, 8656" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11816, 11817, 8861, 8656 <span style="float:right;">80 грн.</span></div>
+								<div>Бюстгальтер 11816, 11817, 8861, 8656 <span style="float:right;">80 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11816, 11817, 8861, 8656', price: '80', size:'tiny',thumb:'thumbnails/IMG48.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -429,8 +616,12 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG49.jpg" alt="IMG49.jpg" itemprop="thumbnail" title="Трусики 2061 Трусики 5116" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Трусики 2061 <span style="float:right;">50 грн.</span></div>
-								<div>Трусики 5116 <span style="float:right;">40 грн.</span></div>
+								<div>Трусики 2061 <span style="float:right;">50 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Трусики 2061', price: '50', size:'tiny',thumb:'thumbnails/IMG49.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
+								<div>Трусики 5116 <span style="float:right;">40 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Трусики 5116', price: '40', size:'tiny',thumb:'thumbnails/IMG49.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 							<figure class="gallery__img--secondary thumbnail" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -438,8 +629,12 @@
 								<img src="static/echo/blank.gif" data-echo="thumbnails/IMG50.jpg" alt="IMG50.jpg" itemprop="thumbnail" title="Бюстгальтер 11911 Трусики 51911" />
 								</a>
 								<figcaption itemprop="caption description">
-								<div>Бюстгальтер 11911 <span style="float:right;">130 грн.</span></div>
-								<div>Трусики 51911 <span style="float:right;">70 грн.</span></div>
+								<div>Бюстгальтер 11911 <span style="float:right;">130 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Бюстгальтер 11911', price: '130', size:'tiny',thumb:'thumbnails/IMG50.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
+								<div>Трусики 51911 <span style="float:right;">70 грн.
+								<a href="javascript:;" onclick="simpleCart.add({name:'Трусики 51911', price: '70', size:'tiny',thumb:'thumbnails/IMG50.jpg',color:'Blue'});" >add to cart</a>
+								</span></div>
 								</figcaption>
 							</figure>
 			</div>
