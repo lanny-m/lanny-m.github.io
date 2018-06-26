@@ -114,7 +114,7 @@ thumb_size = (200, 150)
 # medias_sort_attr = 'filename'
 
 # Reverse sort for medias
-# medias_sort_reverse = False
+medias_sort_reverse = True
 
 # Filter directories and files.
 # The settings take a list of patterns matched with the fnmatch module on the
