@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-#
 # All configuration values have a default; values that are commented out serve
 # to show the default. Default values are specified when modified in this
 # example config file
@@ -22,8 +20,12 @@ source = 'images'
 destination = '../'
 
 # Theme :
-# - colorbox (default), galleria, photoswipe, or the path to a custom theme directory
+# - colorbox (default), galleria, photoswipe, or the path to a custom theme
+# directory
 theme = 'theme'
+
+# Theme for galleria (https://galleriajs.github.io/themes/)
+# galleria_theme = 'classic'
 
 # Author. Used in the footer of the pages and in the author meta tag.
 # author = ''
@@ -32,7 +34,10 @@ theme = 'theme'
 # processing steps (resize, auto-orient, recompress, and any plugin-specific
 # step).
 # Originals will be symlinked if orig_link = True, else they will be copied.
-# use_orig = True
+# use_orig = False
+
+# Path to a CSS file that can be used to customize themes
+# user_css =
 
 # ----------------
 # Image processing (ignored if use_orig = True)
@@ -41,9 +46,24 @@ theme = 'theme'
 # Size of resized image (default: (640, 480))
 img_size = (2100, 1500)
 
-# Should we use openlayers to show a map of the images where possible?
+# Max input image size in pixels (default: None, i.e. use PIL default)
+# This option sets `PIL.Image.MAX_IMAGE_PIXELS` in case you want to
+# convert/resize very large images.
+# max_img_pixels = None
+
+# Output format of images (default: None, i.e. use input format)
+# img_format = "JPEG"
+
+# Show a map of the images where possible?
 # This option only has an effect on the galleria theme for the while.
+# The leaflet_provider setting allow to customize the tile provider (see
+# https://github.com/leaflet-extras/leaflet-providers#providers)
 # show_map = False
+# leaflet_provider = 'OpenStreetMap.Mapnik'
+# map_height = '500px'
+
+# File extensions that should be treated as images
+# img_extensions = ['.jpg', '.jpeg', '.png', '.gif']
 
 # Pilkit processor used to resize the image
 # (see http://pilkit.readthedocs.org/en/latest/#processors)
@@ -61,6 +81,10 @@ img_size = (2100, 1500)
 
 # If True, EXIF data from the original image is copied to the resized image
 # copy_exif_data = False
+
+# Python's datetime format string used for the EXIF date formatting
+# https://docs.python.org/3/library/datetime.html#strftime-strptime-behavior
+# datetime_format = '%c'
 
 # Jpeg options
 # jpg_options = {'quality': 85,
@@ -89,6 +113,11 @@ thumb_size = (200, 150)
 # Crop the image to fill the box
 # thumb_fit = True
 
+# When using thumb_fit, specifies what we should crop
+# for usage see
+# http://pillow.readthedocs.io/en/stable/reference/ImageOps.html#PIL.ImageOps.fit
+# thumb_fit_centering = (0.5, 0.5)
+
 # Delay in seconds to avoid black thumbnails in videos with fade-in
 # thumb_video_delay = '0'
 
@@ -101,8 +130,12 @@ thumb_size = (200, 150)
 # Use symbolic links instead of copying the original images
 # orig_link = False
 
-# Attribute of Album objects which is used to sort medias (eg 'title'). To sort
-# on a metadata key, use 'meta.key'.
+# Use symbolic links that are relative to the source directory instead of
+# absolute paths
+# rel_link = False
+
+# Attribute of Album objects which is used to sort medias (eg 'title'). To
+# sort on a metadata key, use 'meta.key'.
 # albums_sort_attr = 'name'
 
 # Reverse sort for albums
@@ -127,6 +160,12 @@ ignore_files = []
 # Video options
 # -------------
 
+# Video converter binary (can be 'avconv' on certain GNU/Linux distributions)
+# video_converter = 'ffmpeg'
+
+# File extensions that should be treated as video files
+# video_extensions = ['.mov', '.avi', '.mp4', '.webm', '.ogv', '.3gp']
+
 # Video format
 # specify an alternative format, valid are 'webm' (default) and 'mp4'
 # video_format = 'webm'
@@ -139,13 +178,31 @@ ignore_files = []
 # webm_options = ['-crf', '10', '-b:v', '1.6M',
 #                 '-qmin', '4', '-qmax', '63']
 
+# Webm options for 2-pass encoding
+# Options used to encode the webm video on the second pass.
+# Set to None by default, set to an array if a second pass is desired.
+# webm_options_second_pass = None
+
+
 # MP4 options
 # Options used to encode the mp4 video. You may want to read
 # https://trac.ffmpeg.org/wiki/Encode/H.264
 # mp4_options = ['-crf', '23' ]
 
+# MP4 options for 2-pass encoding
+# Options used to encode the mp4 video on the second pass.
+# Set to None by default, set to an array if a second pass is desired.
+# mp4_options_second_pass = None
+
+
 # Size of resized video (default: (480, 360))
+# Set this to None if no resizing is desired on the video.
 # video_size = (480, 360)
+
+# If the desired video extension and filename are the same, the video will
+# not be converted. If a transcode to different quality is required,
+# set this to True to force convert it. False by default.
+# video_always_convert = False
 
 # -------------
 # Miscellaneous
@@ -160,10 +217,6 @@ ignore_files = []
 # Add output filename (see above) to the URLs
 # index_in_url = False
 
-# Use CDN for assets (Google fonts, JQuery).
-# If False some fonts may not be available.
-# use_assets_cdn = True
-
 # A list of links (tuples (title, URL))
 # links = [('Example link', 'http://example.org'),
 #          ('Another link', 'http://example.org')]
@@ -171,18 +224,19 @@ ignore_files = []
 # Google Analytics tracking code (UA-xxxx-x)
 # google_analytics = ''
 
+# Google Tag Manager tracking code (GTM-xxxxxx)
+# google_tag_manager = ''
+
 # Piwik tracking
 # tracker_url must not contain trailing slash.
 # Example : {'tracker_url': 'http://stats.domain.com', 'site_id' : 2}
 # piwik = {'tracker_url': '', 'site_id' : 0}
 
-# Set zip_gallery to either False or a file name. The final archive will
-# contain all resized or original files (depending on `zip_media_format`).
-# zip_gallery = False   # False or 'archive.zip'
-# zip_media_format = 'resized'  # 'resized' or 'orig'
-
 # Specify a different locale. If set to '', the default locale is used.
 # locale = ''
+
+# Define language used on main <html> tag in templates
+# html_language = 'en'
 
 # List of files to copy from the source directory to the destination.
 # A symbolic link is used if ``orig_link`` is set to True (see above).
@@ -193,8 +247,15 @@ ignore_files = []
 # The column size is given in number of column of the css grid of the Skeleton
 # framework which is used for this theme: http://www.getskeleton.com/#grid
 # Then the image size must be adapted to fit the column size.
-# The default is 4 columns which gives 220px. 3 columns gives 160px.
-# colorbox_column_size = 4
+# The default is 3 columns (176px).
+# colorbox_column_size = 3
+
+# Site Logo - Use a logo file in the sidebar
+# Only for colorbox currently, it could be adapted for other themes
+# You must place the logo file into the theme's static images folder, which
+# can be done using 'files_to_copy':
+# files_to_copy = (('extra/logo.png', 'static/logo.png'))
+# site_logo = 'logo.png'
 
 # --------
 # Plugins
@@ -204,11 +265,20 @@ ignore_files = []
 # Another option is to import the plugin and put the module in the list, but
 # this will break with the multiprocessing feature (the settings dict obtained
 # from this file must be serializable).
-# plugins = ['sigal.plugins.adjust', 'sigal.plugins.copyright',
-#            'sigal.plugins.upload_s3', 'sigal.plugins.media_page']
-
-# Add a copyright text on the image (default: '')
-# copyright = "© An example copyright message"
+# plugins = [
+#     'sigal.plugins.adjust',
+#     'sigal.plugins.compress_assets',
+#     'sigal.plugins.copyright',
+#     'sigal.plugins.encrypt',
+#     'sigal.plugins.extended_caching',
+#     'sigal.plugins.feeds',
+#     'sigal.plugins.media_page',
+#     'sigal.plugins.nomedia',
+#     'sigal.plugins.nonmedia_files',
+#     'sigal.plugins.upload_s3',
+#     'sigal.plugins.watermark',
+#     'sigal.plugins.zip_gallery',
+# ]
 
 # Adjust the image after resizing it. A default value of 1.0 leaves the images
 # untouched.
@@ -217,9 +287,42 @@ ignore_files = []
 #                   'contrast': 1.0,
 #                   'sharpness': 1.0}
 
+# Settings for compressing static assets
+# compress_assets_options = {
+#    'method': 'gzip' # Or 'zopfli' or 'brotli'
+# }
+
+# Add a copyright text on the image (default: '')
+# copyright = "© An example copyright message"
+
+# Settings for encryption plugin
+# encrypt_options = {
+#    'password': 'password',
+#    'ask_password': False
+# }
+
+# Settings for nonmedia_files plugin.
+# nonmedia_files_options = {
+#     'ext_as_thumb': True,
+#     'ignore_ext': ['.md'],
+#     'thumb_bg_color': (255, 255, 255),
+#     'thumb_font': None, # name/path of font file
+#     'thumb_font_color': (0, 0, 0),
+#     'thumb_font_size': 40, # only applies when a font is selected
+# }
+
 # Settings for upload to s3 plugin
 # upload_s3_options = {
 # 	'bucket': 'my-bucket',
 # 	'policy': 'public-read',
 # 	'overwrite': False
 # }
+
+# Set zip_gallery to either False or a file name. The file name can
+# be formatted python style with an 'album' variable, for example
+# '{album.name}.zip'. The final archive will contain all resized or
+# original files (depending on `zip_media_format`).
+# zip_gallery = False   # False or 'archive.zip'
+# zip_media_format = 'resized'  # 'resized' or 'orig'
+# zip_skip_if_exists = False # Skip archive generation if archive is
+# already present. Warning: new photos in an album won't be added to archive
