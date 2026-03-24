@@ -1,105 +1,234 @@
 {% extends "base.html" %}
 
 {% block extra_head %}
-  <script src="{{ theme.url }}/photoswipe.min.js"></script>
-  <script src="{{ theme.url }}/photoswipe-ui-default.min.js"></script>
-  <script src="{{ theme.url }}/echo/echo.min.js"></script>
-  <link rel="stylesheet" href="{{ theme.url }}/photoswipe.css">
-  <link rel="stylesheet" href="{{ theme.url }}/default-skin/default-skin.css">
+<script src="{{ theme.url }}/photoswipe.min.js"></script>
+<script src="{{ theme.url }}/photoswipe-ui-default.min.js"></script>
+<script src="{{ theme.url }}/echo/echo.min.js"></script>
+<link rel="stylesheet" href="{{ theme.url }}/photoswipe.css">
+<link rel="stylesheet" href="{{ theme.url }}/default-skin/default-skin.css">
+<style>
+  .search-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    max-width: 480px;
+    margin: 0 auto 20px;
+    padding: 0 1em;
+  }
+  .search-wrap {
+    flex: 1;
+    position: relative;
+    min-width: 180px;
+  }
+  .search-wrap svg {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  #search-input {
+    width: 100%;
+    padding: 8px 12px 8px 32px;
+    font-size: 15px;
+    font-family: inherit;
+    border: 1px solid #D0D0D0;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+  }
+  #search-input:focus {
+    border-color: #3169B3;
+    box-shadow: 0 0 0 3px rgba(49,105,179,0.12);
+  }
+  #search-input::placeholder {
+    color: #aaa;
+  }
+  #hide-unavailable-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    color: #666;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  #hide-unavailable-label input {
+    accent-color: #3169B3;
+    cursor: pointer;
+  }
+  #search-count {
+    font-size: 12px;
+    color: #999;
+    width: 100%;
+    text-align: center;
+    letter-spacing: 0.01em;
+  }
+</style>
 {% endblock extra_head %}
 
 {% block content %}
-  {% include 'download_zip.html' %}
-  {% include 'map.html' %}
-  <div class="gallery" itemscope itemtype="http://schema.org/ImageGallery">
-    {% for media in album.medias %}
-      {% if media.type == "image" %}
-       {% set media_title = media.meta.item|join(' ') if media.meta.item %}
-        <figure class="gallery__img--{{ "main" if false else "secondary" }} thumbnail"
-                itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-          <a href="{{ media.url }}" itemprop="contentUrl" data-size="{{media.size.width}}x{{media.size.height}}">
-            <img src="{{ theme.url }}/echo/blank.gif"
-                 data-echo="{{ media.url if false else media.thumbnail }}"
-                 alt="{{ media.url }}" itemprop="thumbnail" title="{{ media_title }}" />
-          </a>
-          <figcaption itemprop="caption description">
-            {% for item in media.meta.item %}
-            <div style="text-align:left; font-size: 17px;">{{ item }} <span style="float:right;">{{media.meta.price[loop.index0]~" грн." if media.meta.price[loop.index0]|int(-1) != -1 else media.meta.price[loop.index0]}}</span></div>
-            {% else %}
-            {{ media_title }}
-            {% endfor %}
-          </figcaption>
-        </figure>
-      {% endif %}
-      {% if media.type == "video" %}
-        <figure class="gallery__img--secondary thumbnail"
-                itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-          <a href="{{ media.url }}" itemprop="contentUrl" data-type="video"
-             data-video='<div class="video"><div class="video__container"><video controls><source src="{{ media.url }}" type="{{ media.mime }}" /></video></div></div>'>
-          <img src="{{ theme.url }}/echo/blank.gif"
-               data-echo="{{ media.thumbnail }}"
-               alt="{{ media.thumbnail }}" itemprop="thumbnail" title="" />
-          </a>
-          <figcaption itemprop="caption description">{{ media_title }}</figcaption>
-        </figure>
-      {% endif %}
-    {% endfor %}
+{% include 'download_zip.html' %}
+{% include 'map.html' %}
+
+<!-- Поиск -->
+<div class="search-bar">
+  <div class="search-wrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/>
+    </svg>
+    <input type="search" id="search-input" placeholder="Артикул, название, цена…">
   </div>
+  <label id="hide-unavailable-label">
+    <input type="checkbox" id="hide-unavailable">
+    Только в наличии
+  </label>
+  <div id="search-count"></div>
+</div>
+
+<div class="gallery" itemscope itemtype="http://schema.org/ImageGallery">
+  {% for media in album.medias %}
+  {% if media.type == "image" %}
+  {% set media_title = media.meta.item|join(' ') if media.meta.item %}
+  <figure class="gallery__img--{{ "main" if false else "secondary" }} thumbnail"
+  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+  <a href="{{ media.url }}" itemprop="contentUrl" data-size="{{media.size.width}}x{{media.size.height}}">
+    <img src="{{ theme.url }}/echo/blank.gif"
+         data-echo="{{ media.url if false else media.thumbnail }}"
+         alt="{{ media.url }}" itemprop="thumbnail" title="{{ media_title }}" />
+  </a>
+  <figcaption itemprop="caption description">
+    {% for item in media.meta.item %}
+    <div style="text-align:left; font-size: 17px;">{{ item }} <span style="float:right;">{{media.meta.price[loop.index0]~" грн." if media.meta.price[loop.index0]|int(-1) != -1 else media.meta.price[loop.index0]}}</span></div>
+    {% else %}
+    {{ media_title }}
+    {% endfor %}
+  </figcaption>
+  </figure>
+  {% endif %}
+  {% if media.type == "video" %}
+  <figure class="gallery__img--secondary thumbnail"
+          itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+    <a href="{{ media.url }}" itemprop="contentUrl" data-type="video"
+       data-video='<div class="video"><div class="video__container"><video controls><source src="{{ media.url }}" type="{{ media.mime }}" /></video></div></div>'>
+      <img src="{{ theme.url }}/echo/blank.gif"
+           data-echo="{{ media.thumbnail }}"
+           alt="{{ media.thumbnail }}" itemprop="thumbnail" title="" />
+    </a>
+    <figcaption itemprop="caption description">{{ media_title }}</figcaption>
+  </figure>
+  {% endif %}
+  {% endfor %}
+</div>
 
 {% endblock %}
 
 {% block extra_footer %}
-  <!-- Root element of PhotoSwipe. Must have class pswp. -->
-  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-    <!-- Background of PhotoSwipe.
-      It's a separate element as animating opacity is faster than rgba(). -->
-      <div class="pswp__bg"></div>
-
-      <!-- Slides wrapper with overflow:hidden. -->
-      <div class="pswp__scroll-wrap">
-        <!-- Container that holds slides.
-          PhotoSwipe keeps only 3 of them in the DOM to save memory.
-          Don't modify these 3 pswp__item elements, data is added later on. -->
-          <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-          </div>
-
-          <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-          <div class="pswp__ui pswp__ui--hidden">
-            <div class="pswp__top-bar">
-              <!--  Controls are self-explanatory. Order can be changed. -->
-              <div class="pswp__counter"></div>
-              <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-              <button class="pswp__button pswp__button--share" title="Share"></button>
-              <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-              <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-              <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-              <!-- element will get class pswp__preloader-active when preloader is running -->
-              <div class="pswp__preloader">
-                <div class="pswp__preloader__icn">
-                  <div class="pswp__preloader__cut">
-                    <div class="pswp__preloader__donut"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-              <div class="pswp__share-tooltip"></div>
-            </div>
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-            <div class="pswp__caption">
-              <div class="pswp__caption__center"></div>
+<!-- PhotoSwipe -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="pswp__bg"></div>
+  <div class="pswp__scroll-wrap">
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <div class="pswp__counter"></div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--share" title="Share"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut"></div>
             </div>
           </div>
+        </div>
       </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip"></div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center"></div>
+      </div>
+    </div>
   </div>
-  <script src="{{ theme.url }}/app.js"></script>
+</div>
 
+<script src="{{ theme.url }}/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+<script>
+  (function () {
+    var figures = Array.from(document.querySelectorAll('figure.thumbnail'));
+
+    // Собираем текст из figcaption каждой карточки
+    var items = figures.map(function (fig) {
+      var text = fig.querySelector('figcaption').textContent.trim();
+      var unavailable = text.indexOf('нет в наличии') !== -1;
+      return { el: fig, text: text, unavailable: unavailable };
+    });
+
+    var fuse = new Fuse(items, {
+      keys: ['text'],
+      threshold: 0.3,
+      minMatchCharLength: 2
+    });
+
+    var input        = document.getElementById('search-input');
+    var hideCheckbox = document.getElementById('hide-unavailable');
+    var countEl      = document.getElementById('search-count');
+
+    function updateCount(shown, total) {
+      countEl.textContent = shown === total
+        ? 'Всего товаров: ' + total
+        : 'Найдено: ' + shown + ' из ' + total;
+    }
+
+    function applyFilters() {
+      var query      = input.value.trim();
+      var hideUnavail = hideCheckbox.checked;
+
+      // Определяем какие элементы прошли поиск
+      var searchSet;
+      if (query.length >= 2) {
+        searchSet = new Set(fuse.search(query).map(function (r) { return r.item.el; }));
+      } else {
+        searchSet = null; // нет фильтра по тексту
+      }
+
+      var shown = 0;
+      items.forEach(function (item) {
+        var passSearch = !searchSet || searchSet.has(item.el);
+        var passUnavail = !hideUnavail || !item.unavailable;
+        var visible = passSearch && passUnavail;
+        item.el.style.display = visible ? '' : 'none';
+        if (visible) shown++;
+      });
+
+      updateCount(shown, items.length);
+
+      if (window.echo) {
+        echo.render();
+      }
+    }
+
+    input.addEventListener('input', applyFilters);
+    hideCheckbox.addEventListener('change', applyFilters);
+
+    // Начальный счётчик
+    updateCount(items.length, items.length);
+  })();
+</script>
 {% endblock %}
