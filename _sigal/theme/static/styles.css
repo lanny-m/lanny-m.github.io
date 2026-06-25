@@ -233,3 +233,61 @@ footer span:not(:last-child):after {
     width: 100%;
   }
 }
+
+/* ───── Каталог: сетка товаров + подпись с ценой (добавлено) ───── */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  float: none;
+  align-items: start;
+}
+.gallery .thumbnail,
+.gallery .gallery__img--secondary {
+  width: auto;
+  float: none;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+.gallery .thumbnail img {
+  max-width: 100%;
+  margin: 0 0 6px;
+  border-width: 6px;
+}
+/* Подпись с артикулом и ценой — была скрыта, теперь видна под фото */
+.gallery figcaption {
+  display: block;
+  padding: 0 4px 2px;
+  font-size: 14px;
+  line-height: 1.35;
+  text-align: left;
+}
+.gallery figcaption > div {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 14px !important;
+}
+.gallery figcaption > div span {
+  float: none !important;
+  white-space: nowrap;
+  font-weight: 600;
+  color: #282B30;
+}
+.gallery figcaption > div span.na {
+  font-weight: 400;
+  color: #BBB;
+  cursor: help;
+}
+
+@media screen and (max-width: 900px) {
+  .gallery { grid-template-columns: repeat(3, 1fr); }
+}
+@media screen and (max-width: 600px) {
+  .gallery { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+}
+@media screen and (max-width: 320px) {
+  .gallery { grid-template-columns: 1fr; }
+}

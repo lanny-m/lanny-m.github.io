@@ -25,13 +25,18 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     gap: 10px;
-    max-width: 480px;
-    margin: 0 auto 20px;
-    padding: 0 1em;
+    margin: 0 0 18px;
+    padding: 12px 1em;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #EEE;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
   }
   .search-wrap {
-    flex: 1;
+    flex: 0 1 320px;
     position: relative;
     min-width: 180px;
   }
@@ -84,6 +89,34 @@
     width: 100%;
     text-align: center;
     letter-spacing: 0.01em;
+  }
+  #to-top {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: #3169B3;
+    color: #fff;
+    font-size: 24px;
+    line-height: 46px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .25s, visibility .25s, background .2s;
+    z-index: 200;
+  }
+  #to-top.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  #to-top:hover {
+    background: #C00;
   }
 </style>
     <link rel="stylesheet" href="static/styles.css">
@@ -1146,7 +1179,7 @@
          alt="IMG_23_07.JPG" itemprop="thumbnail" title="Бюстгальтер 11389 Трусики 51389" />
   </a>
   <figcaption itemprop="caption description">
-    <div style="text-align:left; font-size: 17px;">Бюстгальтер 11389 <span style="float:right;">нет в наличии</span></div>
+    <div style="text-align:left; font-size: 17px;">Бюстгальтер 11389 <span class="na" title="нет в наличии" style="float:right;">—</span></div>
     <div style="text-align:left; font-size: 17px;">Трусики 51389 <span style="float:right;">130 грн.</span></div>
   </figcaption>
   </figure>
@@ -1180,7 +1213,7 @@
          alt="IMG_23_04.JPG" itemprop="thumbnail" title="Бюстгальтер 11933 Трусики 51933" />
   </a>
   <figcaption itemprop="caption description">
-    <div style="text-align:left; font-size: 17px;">Бюстгальтер 11933 <span style="float:right;">нет в наличии</span></div>
+    <div style="text-align:left; font-size: 17px;">Бюстгальтер 11933 <span class="na" title="нет в наличии" style="float:right;">—</span></div>
     <div style="text-align:left; font-size: 17px;">Трусики 51933 <span style="float:right;">130 грн.</span></div>
   </figcaption>
   </figure>
@@ -1296,7 +1329,7 @@
   </a>
   <figcaption itemprop="caption description">
     <div style="text-align:left; font-size: 17px;">Бюстгальтер 11820 <span style="float:right;">220 грн.</span></div>
-    <div style="text-align:left; font-size: 17px;">Трусики 21820 <span style="float:right;">нет в наличии</span></div>
+    <div style="text-align:left; font-size: 17px;">Трусики 21820 <span class="na" title="нет в наличии" style="float:right;">—</span></div>
   </figcaption>
   </figure>
   <figure class="gallery__img--secondary thumbnail"
@@ -1556,7 +1589,7 @@
          alt="IMG_17_02.JPG" itemprop="thumbnail" title="Бюстгальтер 11150 Трусики 51150" />
   </a>
   <figcaption itemprop="caption description">
-    <div style="text-align:left; font-size: 17px;">Бюстгальтер 11150 <span style="float:right;">нет в наличии</span></div>
+    <div style="text-align:left; font-size: 17px;">Бюстгальтер 11150 <span class="na" title="нет в наличии" style="float:right;">—</span></div>
     <div style="text-align:left; font-size: 17px;">Трусики 51150 <span style="float:right;">120 грн.</span></div>
   </figcaption>
   </figure>
@@ -1569,7 +1602,7 @@
   </a>
   <figcaption itemprop="caption description">
     <div style="text-align:left; font-size: 17px;">Бюстгальтер 12491 <span style="float:right;">200 грн.</span></div>
-    <div style="text-align:left; font-size: 17px;">Трусики 52491 <span style="float:right;">нет в наличии</span></div>
+    <div style="text-align:left; font-size: 17px;">Трусики 52491 <span class="na" title="нет в наличии" style="float:right;">—</span></div>
   </figcaption>
   </figure>
   <figure class="gallery__img--secondary thumbnail"
@@ -1581,7 +1614,7 @@
   </a>
   <figcaption itemprop="caption description">
     <div style="text-align:left; font-size: 17px;">Бюстгальтер 11911 <span style="float:right;">180 грн.</span></div>
-    <div style="text-align:left; font-size: 17px;">Трусики 51911 <span style="float:right;">нет в наличии</span></div>
+    <div style="text-align:left; font-size: 17px;">Трусики 51911 <span class="na" title="нет в наличии" style="float:right;">—</span></div>
   </figcaption>
   </figure>
   <figure class="gallery__img--secondary thumbnail"
@@ -1592,9 +1625,9 @@
          alt="IMG_16_48.jpg" itemprop="thumbnail" title="Бюстгальтер 11817 Бюстгальтер 8861 Бюстгальтер 11816, 8656" />
   </a>
   <figcaption itemprop="caption description">
-    <div style="text-align:left; font-size: 17px;">Бюстгальтер 11817 <span style="float:right;">нет в наличии</span></div>
+    <div style="text-align:left; font-size: 17px;">Бюстгальтер 11817 <span class="na" title="нет в наличии" style="float:right;">—</span></div>
     <div style="text-align:left; font-size: 17px;">Бюстгальтер 8861 <span style="float:right;">135 грн.</span></div>
-    <div style="text-align:left; font-size: 17px;">Бюстгальтер 11816, 8656 <span style="float:right;">нет в наличии</span></div>
+    <div style="text-align:left; font-size: 17px;">Бюстгальтер 11816, 8656 <span class="na" title="нет в наличии" style="float:right;">—</span></div>
   </figcaption>
   </figure>
   <figure class="gallery__img--secondary thumbnail"
@@ -1661,7 +1694,7 @@
   </a>
   <figcaption itemprop="caption description">
     <div style="text-align:left; font-size: 17px;">Бюстгальтер 11118 <span style="float:right;">215 грн.</span></div>
-    <div style="text-align:left; font-size: 17px;">Трусики 51118 <span style="float:right;">нет в наличии</span></div>
+    <div style="text-align:left; font-size: 17px;">Трусики 51118 <span class="na" title="нет в наличии" style="float:right;">—</span></div>
   </figcaption>
   </figure>
   <figure class="gallery__img--secondary thumbnail"
@@ -1734,7 +1767,9 @@
       <span>&copy; Lanny-m</span>
     <span>Generated by <a href="https://github.com/saimn/sigal">sigal</a></span>
   </p>
-</footer><!-- PhotoSwipe -->
+</footer><button id="to-top" aria-label="Наверх" title="Наверх">↑</button>
+
+<!-- PhotoSwipe -->
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="pswp__bg"></div>
   <div class="pswp__scroll-wrap">
@@ -1779,7 +1814,8 @@
     // Собираем текст из figcaption каждой карточки
     var items = figures.map(function (fig) {
       var text = fig.querySelector('figcaption').textContent.trim();
-      var unavailable = text.indexOf('нет в наличии') !== -1;
+      // Товар недоступен, если хотя бы у одной составляющей нет цены (прочерк «—»)
+      var unavailable = !!fig.querySelector('figcaption span.na');
       return { el: fig, text: text, unavailable: unavailable };
     });
 
@@ -1792,6 +1828,7 @@
     var input        = document.getElementById('search-input');
     var hideCheckbox = document.getElementById('hide-unavailable');
     var countEl      = document.getElementById('search-count');
+    var toTop        = document.getElementById('to-top');
 
     function updateCount(shown, total) {
       countEl.textContent = shown === total
@@ -1829,6 +1866,15 @@
 
     input.addEventListener('input', applyFilters);
     hideCheckbox.addEventListener('change', applyFilters);
+
+    // Кнопка «наверх»
+    window.addEventListener('scroll', function () {
+      if (window.pageYOffset > 400) toTop.classList.add('show');
+      else toTop.classList.remove('show');
+    });
+    toTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
     // Начальный счётчик
     updateCount(items.length, items.length);
